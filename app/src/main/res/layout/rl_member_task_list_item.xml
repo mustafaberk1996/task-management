@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:background="@drawable/dr_bg_member_task_list_item"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="5dp">
 
     <CheckBox
         android:id="@+id/cbCompltedTask"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" />
 
     <TextView
         android:id="@+id/tvTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/cbCompltedTask"
         android:text="@string/lorem" />
-</LinearLayout>
+</RelativeLayout>

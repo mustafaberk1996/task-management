@@ -80,10 +80,10 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
                     messageAdapter = new MessageAdapter(getApplicationContext(), messageList, ParseUser.getCurrentUser());
                     rvMessages.setAdapter(messageAdapter);
+                    rvMessages.scrollToPosition(messageList.size()-1);
                 }
             }
         });
-
     }
 
     private void init() {
@@ -139,6 +139,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                         etMessage.setText("");
                         messageList.add(msg);
                         messageAdapter.notifyItemInserted(messageList.size() - 1);
+                        rvMessages.scrollToPosition(messageList.size()-1);
                     }
                 }
             });

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -72,10 +73,10 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
     private void updateUI(ParseUser currentUser) {
         if (currentUser == null) {
             llSignIn.setVisibility(View.VISIBLE);
-           if(menu!=null) menu.findItem(R.id.menu_send_message).setVisible(false);
+            if (menu != null) menu.findItem(R.id.menu_send_message).setVisible(false);
 
         } else {
-            if(menu!=null) menu.findItem(R.id.menu_send_message).setVisible(true);
+            if (menu != null) menu.findItem(R.id.menu_send_message).setVisible(true);
             tvUserName.setText(currentUser.getUsername());
             llSignIn.setVisibility(View.GONE);
 

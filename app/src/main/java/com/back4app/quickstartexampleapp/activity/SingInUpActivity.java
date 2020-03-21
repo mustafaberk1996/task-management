@@ -110,7 +110,7 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
 
                     taskList = new ArrayList<>();
                     for (ParseObject item : objects) {
-                        Log.d(TAG, "done: " + new Gson().toJson(item));
+                        //Log.d(TAG, "done: " + new Gson().toJson(item));
                         Task task = new Task(item.getObjectId(),
                                 item.getString("task"),
                                 item.getString("memberName"),
@@ -272,7 +272,7 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
             ParseUser.logInInBackground(Utility.getText(etUserName), Utility.getText(etPassword), new LogInCallback() {
                 public void done(ParseUser user, ParseException e) {
                     if (user != null) {
-                        Log.d(TAG, new Gson().toJson(user));
+                        //Log.d(TAG, new Gson().toJson(user));
                         currentUser = ParseUser.getCurrentUser();
                         updateUI(user);
                         etPassword.setText("");
@@ -300,7 +300,7 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
                     for (ParseUser item : users) {
                         User user = new User(item.getObjectId(), item.getString("name"), item.getString("surname"), item.getString("userType"));
                         userlist.add(user);
-                        Log.d(TAG, new Gson().toJson(user));
+                        //Log.d(TAG, new Gson().toJson(user));
                     }
                     memberAdapter = new MemberAdapter(getApplicationContext(), userlist);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);

@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -47,14 +48,13 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_message);
 
         // Save the current Installation to Back4App
-        //  ParseInstallation.getCurrentInstallation().saveInBackground();
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         init();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Messages");
-
         getMessages();
 
     }
@@ -65,7 +65,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
-                    Log.d(TAG, "done: " + new Gson().toJson(objects));
+                    //Log.d(TAG, "done: " + new Gson().toJson(objects));
                     messageList = new ArrayList<>();
                     for (ParseObject item : objects) {
                         Message message = new Message(
@@ -74,7 +74,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                                 String.valueOf(item.getInt("time")),
                                 item.getString("senderObjectId")
                         );
-                        Log.d(TAG, "done: " + message.getTime());
+                        //Log.d(TAG, "done: " + message.getTime());
                         messageList.add(message);
                     }
 

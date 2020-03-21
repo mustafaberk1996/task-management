@@ -58,6 +58,7 @@
 
             <EditText
                 android:id="@+id/etTaskText"
+                android:hint="bir görev yazınız...."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="150"

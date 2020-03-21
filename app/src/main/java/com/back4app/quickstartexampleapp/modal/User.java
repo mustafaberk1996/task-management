@@ -1,4 +1,4 @@
-package com.back4app.quickstartexampleapp;
+package com.back4app.quickstartexampleapp.modal;
 
 public class User {
     private String name, surname, userName, password, objectId, userType;

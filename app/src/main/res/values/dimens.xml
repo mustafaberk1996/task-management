@@ -3,4 +3,5 @@
     <dimen name="dr_bg_tv_member_width">15dp</dimen>
     <dimen name="list_item_corner_radius">10dp</dimen>
     <dimen name="nav_button_height">40dp</dimen>
+    <dimen name="ll_send_message_height">60dp</dimen>
 </resources>

@@ -6,4 +6,5 @@
     <color name="white">#FFFFFF</color>
     <color name="listItemBackColor">#EFEFEF</color>
     <color name="navButtonBack">#2196F3</color>
+    <color name="messageSenderBack">#FF9800</color>
 </resources>

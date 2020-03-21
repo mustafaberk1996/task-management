@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.back4app.quickstartexampleapp.R;
-import com.back4app.quickstartexampleapp.Task;
+import com.back4app.quickstartexampleapp.modal.Task;
 
 import java.util.List;
 

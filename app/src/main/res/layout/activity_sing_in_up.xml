@@ -12,22 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_toStartOf="@id/imgExit"
-        android:layout_toLeftOf="@id/imgExit"
         android:gravity="left"
         android:padding="5dp"
         android:text="User Name"
         android:textSize="20sp"
         android:visibility="visible" />
 
-    <ImageView
-        android:id="@+id/imgExit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_exit_to_app" />
+
 
     <RelativeLayout
         android:id="@+id/rlAdmin"
@@ -119,7 +110,8 @@
         android:background="#fff"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:padding="10dp"
+        android:visibility="visible">
 
         <EditText
             android:id="@+id/etUserName"
@@ -137,7 +129,10 @@
             android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign In" />
+            android:layout_margin="10dp"
+            android:background="@drawable/dr_bg_btn_sign_in"
+            android:text="Sign In"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </RelativeLayout>

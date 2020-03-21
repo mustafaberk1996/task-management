@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.back4app.quickstartexampleapp.R;
-import com.back4app.quickstartexampleapp.Task;
+import com.back4app.quickstartexampleapp.modal.Task;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -55,9 +55,7 @@ public class MemberTaskAdapter extends RecyclerView.Adapter<MemberTaskAdapter.Vi
                     public void done(ParseObject object, ParseException e) {
                         if (e == null) {
                             object.put("isCompleted", b);
-                           // task.setCompleted(b);
                             object.saveInBackground();
-                            //notifyDataSetChanged();
                             if (b)
                                 Toast.makeText(context, "task tamamlandı", Toast.LENGTH_SHORT).show();
                         }

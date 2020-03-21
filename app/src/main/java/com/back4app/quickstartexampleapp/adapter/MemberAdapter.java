@@ -12,7 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.back4app.quickstartexampleapp.R;
-import com.back4app.quickstartexampleapp.User;
+import com.back4app.quickstartexampleapp.modal.User;
 
 import java.util.List;
 

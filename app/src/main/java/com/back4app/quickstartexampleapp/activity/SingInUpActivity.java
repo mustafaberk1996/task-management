@@ -1,11 +1,15 @@
 package com.back4app.quickstartexampleapp.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,14 +22,15 @@ import android.widget.Toast;
 import com.back4app.quickstartexampleapp.adapter.AdminTaskAdapter;
 import com.back4app.quickstartexampleapp.adapter.MemberAdapter;
 import com.back4app.quickstartexampleapp.R;
-import com.back4app.quickstartexampleapp.Task;
-import com.back4app.quickstartexampleapp.User;
+import com.back4app.quickstartexampleapp.modal.Task;
+import com.back4app.quickstartexampleapp.modal.User;
 import com.back4app.quickstartexampleapp.Utility;
 import com.back4app.quickstartexampleapp.adapter.MemberTaskAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -42,7 +47,6 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
     private EditText etUserName, etPassword, etTaskText;
     private Button btnSignIn, btnShowCreateTask, btnShowTaskList, btnCreateTask;
     private TextView tvUserName;
-    private ImageView imgExit;
     private RelativeLayout rlAdmin, rlCreateTask;
     private LinearLayout llSignIn;
     private RecyclerView rvMemberTask, rvAdminTasks, rvMembers;
@@ -54,6 +58,7 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
     private MemberAdapter memberAdapter;
     private MemberTaskAdapter memberTaskAdapter;
     private List<Task> taskList;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +72,16 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
     private void updateUI(ParseUser currentUser) {
         if (currentUser == null) {
             llSignIn.setVisibility(View.VISIBLE);
+           if(menu!=null) menu.findItem(R.id.menu_send_message).setVisible(false);
+
         } else {
+            if(menu!=null) menu.findItem(R.id.menu_send_message).setVisible(true);
             tvUserName.setText(currentUser.getUsername());
             llSignIn.setVisibility(View.GONE);
+
             if (User.ADMIN == Integer.parseInt(currentUser.getString("userType"))) {
                 rlAdmin.setVisibility(View.VISIBLE);
+                rlCreateTask.setVisibility(View.VISIBLE);
                 rvMemberTask.setVisibility(View.GONE);
                 getMembers();
             } else {
@@ -129,7 +139,6 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
         rvAdminTasks = findViewById(R.id.rvAdminTasks);
         rvMembers = findViewById(R.id.rvMembers);
         tvUserName = findViewById(R.id.tvUserName);
-        imgExit = findViewById(R.id.imgExit);
         llSignIn = findViewById(R.id.llSignIn);
 
 
@@ -147,7 +156,6 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
         rvMemberTask.setVisibility(View.GONE);
         rvAdminTasks.setVisibility(View.GONE);
 
-        imgExit.setOnClickListener(this);
         btnSignIn.setOnClickListener(this);
         btnShowCreateTask.setOnClickListener(this);
         btnShowTaskList.setOnClickListener(this);
@@ -164,11 +172,6 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btnCreateTask:
                 createTask(etTaskText);
                 break;
-
-            case R.id.imgExit:
-                ParseUser.logOut();
-                updateUI(ParseUser.getCurrentUser());
-                break;
             case R.id.btnShowCreateTask:
                 rlCreateTask.setVisibility(View.VISIBLE);
                 rvAdminTasks.setVisibility(View.GONE);
@@ -180,6 +183,31 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        this.menu = menu;
+        if (ParseUser.getCurrentUser() != null)
+            menu.findItem(R.id.menu_send_message).setVisible(true);
+        else
+            menu.findItem(R.id.menu_send_message).setVisible(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_exit:
+                ParseUser.logOut();
+                updateUI(ParseUser.getCurrentUser());
+                break;
+            case R.id.menu_send_message:
+                startActivity(new Intent(this, MessageActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void getAdminTasks() {
@@ -284,8 +312,6 @@ public class SingInUpActivity extends AppCompatActivity implements View.OnClickL
                                 taskMemberList.add(user);
                             else
                                 taskMemberList.remove(getUserIndex(user.getObjectId(), taskMemberList));
-
-                            Log.d(TAG, "onItemClick: taskmember size" + taskMemberList.size());
                         }
                     });
 

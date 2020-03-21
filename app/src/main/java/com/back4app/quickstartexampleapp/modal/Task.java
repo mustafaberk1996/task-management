@@ -1,4 +1,4 @@
-package com.back4app.quickstartexampleapp;
+package com.back4app.quickstartexampleapp.modal;
 
 public class Task {
     private String objectId, task, memberName,memberId, adminId;

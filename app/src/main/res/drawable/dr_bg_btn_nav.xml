@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/nav_button_height" />
+    <solid android:color="@color/navButtonBack" />
+    <size android:height="@dimen/nav_button_height" />
+</shape>

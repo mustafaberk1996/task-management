@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="nav_button">
+
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/nav_button_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background"> @drawable/dr_bg_btn_nav</item>
+
+
+    </style>
+
 </resources>
